@@ -35,7 +35,7 @@ The system also features a responsive interface with a carousel and dynamic moda
 
 ### **3. Setup Database**
 1. Open **phpMyAdmin** via `http://localhost/phpmyadmin/`.
-2. Create a new database named: `savory_spot_db`.
+2. Create a new database named: `Savory_Spot_Restaurant_Reservation_System`.
 3. Import the SQL file (if provided) or create tables manually:
    - `users` table for login/signup
    - `reservations` table to store reservation details
@@ -48,4 +48,5 @@ private $host = 'localhost';
 private $user = 'root';
 private $password = ''; // default XAMPP password is empty
 private $dbname = 'Savory_Spot_Restaurant_Reservation_System';
+
 
