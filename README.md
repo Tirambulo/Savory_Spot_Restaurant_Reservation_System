@@ -47,4 +47,5 @@ The system also features a responsive interface with a carousel and dynamic moda
 private $host = 'localhost';
 private $user = 'root';
 private $password = ''; // default XAMPP password is empty
-private $dbname = 'savory_spot_db';
+private $dbname = 'Savory_Spot_Restaurant_Reservation_System';
+
