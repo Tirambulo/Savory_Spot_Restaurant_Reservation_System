@@ -16,7 +16,6 @@ include(__DIR__ . '/../includes/header.php');
         </ul>
     </div>
 
-    <!-- ✅ LOGOUT BUTTON -->
     <div class="navbar-end">
         <a href="../handlers/login.php" class="btn btn-warning btn-sm font-semibold">Logout</a>
     </div>
@@ -103,14 +102,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 [
                     'title' => 'Al Fresco Terrace', 
                     'description' => 'Enjoy the evening air on our beautiful outdoor terrace with a breathtaking view.', 
-                    'capacity' => 4, 
+                    'capacity' => 8, 
                     'feature' => 'Outdoor',
                     'image' => '../assets/table4.jpg' 
                 ],
                 [
                     'title' => 'Main Dining Hall', 
                     'description' => 'Comfortable and versatile seating for walk-ins and standard reservations.', 
-                    'capacity' => 4, 
+                    'capacity' => 10,
                     'feature' => 'Standard',
                     'image' => '../assets/table5.jpg' 
                 ],
@@ -132,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     
                     <p class="text-base text-gray-400 mb-4 font-light italic h-12"><?= htmlspecialchars($area['description']) ?></p>
                     
-                    <!-- Only guest capacity shown — no price -->
                     <div class="flex justify-end pt-3">
                         <div class="flex items-center text-md text-gray-400">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -1,9 +1,5 @@
 <?php
-/**
- * Login and Signup Handler for Savory Spot Booking System.
- * This file handles both POST requests (for API-style login/signup) 
- * and GET requests (to display the login/signup page).
- */
+
 session_start();
 
 ob_start();
@@ -17,15 +13,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['login']) || isset($_
     
     header('Content-Type: application/json');
     
+    
     include('../Classes/Client.php'); 
+   
     $client = new Users(); 
     
     
     if (isset($_POST['login'])) {
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
-        $response = $client->login($email, $password);
+
         
+        $ADMIN_EMAIL = 'admin@gmail.com';
+        $ADMIN_PASSWORD = 'Admin123';
+
+        if ($email === $ADMIN_EMAIL && $password === $ADMIN_PASSWORD) {
+            
+            $_SESSION['logged_in'] = true;
+            $_SESSION['is_admin'] = true;
+            $_SESSION['user_email'] = $email;
+            
+            $response = [
+                'success' => "Admin login successful!",
+                
+                'redirect' => "../pages/admin_home.php" 
+                
+            ];
+        } 
+      
+        
+        else {
+            
+            $response = $client->login($email, $password);
+            
+            
+            if (isset($response['success'])) {
+                 
+                 $response['redirect'] = "../pages/home.php"; 
+            }
+        }
     } 
     
     else if (isset($_POST['signup'])) {
@@ -80,7 +106,7 @@ ob_end_flush();
         position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; 
         background-size: cover; background-position: center center; background-repeat: no-repeat;
         animation: slideshow 15s infinite ease-in-out; 
-  
+ 
         transition: background-image 2s ease-in-out; 
     }
     .bg-overlay {
@@ -257,12 +283,15 @@ document.addEventListener("DOMContentLoaded", function() {
             globalMsg.classList.add('text-success', 'text-warning'); 
             globalMsg.textContent = data.success;
             
+            // --- UPDATED JAVASCRIPT LOGIC ---
             if (data.redirect) { 
                 loginForm.reset();
                 setTimeout(() => {
-                    window.location.href = data.redirect || "../pages/home.php"; 
+                    // Use the specific redirect URL provided by the server (Admin or Client)
+                    window.location.href = data.redirect; 
                 }, 500); 
             } else {
+                // This handles successful Sign-up, moving back to login panel
                 if (data.success.includes('Signup')) {
                     setTimeout(() => {
                         toggleForms(true);
@@ -270,6 +299,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }, 2000); 
                 }
             }
+            // --- END UPDATED JAVASCRIPT LOGIC ---
         } else if (data.error) {
             globalMsg.classList.remove('text-success', 'text-warning');
             globalMsg.classList.add('text-error', 'text-red-500'); 

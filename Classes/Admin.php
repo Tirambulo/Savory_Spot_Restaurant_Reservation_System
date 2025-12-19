@@ -1,11 +1,12 @@
 <?php
 session_start();
 
-// 🔒 Require login & admin access
-if (!isset($_SESSION['user_id'])) {
+// Only allow admins
+if (!isset($_SESSION['logged_in']) || $_SESSION['is_admin'] !== true) {
     header('Location: ../handlers/login.php');
     exit;
 }
+
 
 // Load DB & User classes
 require_once(__DIR__ . '/../handlers/Connection.php');
