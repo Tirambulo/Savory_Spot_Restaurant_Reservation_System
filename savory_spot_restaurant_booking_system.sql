@@ -169,13 +169,6 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payments`
---
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`id`);
-
 --
 -- Indexes for table `reservations`
 --
@@ -215,13 +208,6 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `payments`
---
-ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `reservations`
 --
